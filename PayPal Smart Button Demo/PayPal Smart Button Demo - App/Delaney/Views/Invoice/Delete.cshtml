@@ -1,0 +1,123 @@
+@model Delaney.Models.Invoice
+<div class="container">
+
+    <h2>Delete Invoice</h2>
+
+    <form asp-action="Delete"
+          method="post">
+        <h3>Are you sure you?</h3>
+
+        <div class="grid_auto_1fr">
+
+        <!-- Number -->
+        <div>@Html.DisplayNameFor(x => x.Number)</div>
+        <div>@Html.DisplayFor(x => x.Number)</div>
+
+        <!-- Prefix -->
+        <div>@Html.DisplayNameFor(x => x.Prefix)</div>
+        <div>@Html.DisplayFor(x => x.Prefix)</div>
+
+        <!-- FirstName -->
+        <div>@Html.DisplayNameFor(x => x.FirstName)</div>
+        <div>@Html.DisplayFor(x => x.FirstName)</div>
+
+        <!-- MiddleName -->
+        <div>@Html.DisplayNameFor(x => x.MiddleName)</div>
+        <div>@Html.DisplayFor(x => x.MiddleName)</div>
+
+        <!-- LastName -->
+        <div>@Html.DisplayNameFor(x => x.LastName)</div>
+        <div>@Html.DisplayFor(x => x.LastName)</div>
+
+        <!-- Suffix -->
+        <div>@Html.DisplayNameFor(x => x.Suffix)</div>
+        <div>@Html.DisplayFor(x => x.Suffix)</div>
+
+        <!-- Email -->
+        <div>@Html.DisplayNameFor(x => x.Email)</div>
+        <div>@Html.DisplayFor(x => x.Email)</div>
+
+        <!-- Address1 -->
+        <div>@Html.DisplayNameFor(x => x.Address1)</div>
+        <div>@Html.DisplayFor(x => x.Address1)</div>
+
+        <!-- Address2 -->
+        <div>@Html.DisplayNameFor(x => x.Address2)</div>
+        <div>@Html.DisplayFor(x => x.Address2)</div>
+
+        <!-- Address3 -->
+        <div>@Html.DisplayNameFor(x => x.Address3)</div>
+        <div>@Html.DisplayFor(x => x.Address3)</div>
+
+        <!-- Address4 -->
+        <div>@Html.DisplayNameFor(x => x.Address4)</div>
+        <div>@Html.DisplayFor(x => x.Address4)</div>
+
+        <!-- Address5 -->
+        <div>@Html.DisplayNameFor(x => x.Address5)</div>
+        <div>@Html.DisplayFor(x => x.Address5)</div>
+
+        <!-- PostCode -->
+        <div>@Html.DisplayNameFor(x => x.PostCode)</div>
+        <div>@Html.DisplayFor(x => x.PostCode)</div>
+
+        <!-- CountryCode -->
+        <div>@Html.DisplayNameFor(x => x.CountryCode)</div>
+        <div>@Html.DisplayFor(x => x.CountryCode)</div>
+
+        <!-- PayPalOrderId -->
+        <div>@Html.DisplayNameFor(x => x.PayPalOrderId)</div>
+        <div>@Html.DisplayFor(x => x.PayPalOrderId)</div>
+
+        <!-- PayPalPayerId -->
+        <div>@Html.DisplayNameFor(x => x.PayPalPayerId)</div>
+        <div>@Html.DisplayFor(x => x.PayPalPayerId)</div>
+
+        <!-- Created Date -->
+        <div>@Html.DisplayNameFor(x => x.CreatedDate)</div>
+        <div>@Html.DisplayFor(x => x.CreatedDateString)</div>
+    </div>
+
+    @if (!ViewContext.ModelState.IsValid)
+    {
+        @Html.ValidationSummary(false,
+                                "",
+                                new { @class = "text-danger list_Error" })
+    }
+
+        <!-- Buttons -->
+        <button formaction="/Invoice/Delete"
+                formmethod="post"
+                type="submit"
+                class="btn btn-secondary">Delete</button>
+        <button formaction="/Invoice/Cancel"
+                formmethod="post"
+                type="submit"
+                class="btn btn-secondary">Cancel</button>
+
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.Number)
+        @Html.HiddenFor(x => x.Prefix)
+        @Html.HiddenFor(x => x.FirstName)
+        @Html.HiddenFor(x => x.MiddleName)
+        @Html.HiddenFor(x => x.LastName)
+        @Html.HiddenFor(x => x.Suffix)
+        @Html.HiddenFor(x => x.Email)
+        @Html.HiddenFor(x => x.Address1)
+        @Html.HiddenFor(x => x.Address2)
+        @Html.HiddenFor(x => x.Address3)
+        @Html.HiddenFor(x => x.Address4)
+        @Html.HiddenFor(x => x.Address5)
+        @Html.HiddenFor(x => x.PostCode)
+        @Html.HiddenFor(x => x.CountryCode)
+        @Html.HiddenFor(x => x.PayPalOrderId)
+        @Html.HiddenFor(x => x.PayPalPayerId)
+        @Html.HiddenFor(x => x.CreatedDate)
+        @Html.HiddenFor(x => x.GUID)
+    </form>
+
+
+    <div>
+        <p class="delaney-link-pager">@Html.ActionLink("Back to List", "")</p>
+    </div>
+</div>

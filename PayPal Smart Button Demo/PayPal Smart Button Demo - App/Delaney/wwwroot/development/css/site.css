@@ -1,0 +1,116 @@
+﻿:root {
+    --margin: 3px;
+    --header_height: 56px;
+    --content_top: 64px;
+    --indent : 3px;
+}
+
+h2 {
+    margin-top: calc(var(--margin)*6) !important;
+}
+
+h3 {
+    margin-top: calc(var(--margin)*6) !important;
+}
+
+.icon_calender {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+
+.icon_slate {
+    height: calc(48.5px - var(--margin)*6);
+    margin-top: calc(var(--margin)*3) !important;
+    margin-bottom: calc(var(--margin)*3) !important;
+    margin-left: calc(var(--margin)*3) !important;
+    margin-right: calc(var(--margin)*3) !important;
+    fill: white;
+}
+
+.icon {
+    height: 1.5rem;
+    margin-top: 0 !important;
+    margin-bottom: 3px !important;
+    margin-left: var(--margin) !important;
+    margin-right: var(--margin) !important;
+    fill: rgba(255, 255, 255, 0.5);
+}
+    .icon:hover, .nav-link:hover svg {
+        fill: #fff;
+    }
+
+
+form {
+    margin-top: calc(var(--margin)*6) !important;
+}
+
+.header {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    width: calc(100% - var(--margin)*2);
+    min-height: var(--header_height);
+}
+
+.content {
+    margin-top: var(--content_top);
+}
+
+.flex_grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+    .flex_grid * {
+        margin: var(--margin);
+    }
+
+.container * {
+    margin: var(--margin);
+    overflow: hidden;
+}
+
+.checkbox_container {
+    margin-top: 0 !Important;
+    margin-bottom: 0 !Important;
+    margin-left: 0 !Important;
+    margin-right: 0 !Important;
+}
+    .checkbox_container > * {
+        vertical-align: middle;
+        margin-left:0;
+        margin-right:0;
+    }
+
+
+.grid_auto_1fr {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.grid_1fr_auto {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+@media screen and (min-width: 650px) {
+
+    .grid_auto_1fr {
+        grid-template-columns: auto 1fr;
+        grid-gap: 0.5em;
+    }
+
+    .grid_1fr_auto {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-gap: 0.5em;
+    }
+}
+
+
+.grid_auto_1fr > label {
+    margin-top: 16px;
+}
+
+.list_Error {
+    margin-left: -22px;
+}

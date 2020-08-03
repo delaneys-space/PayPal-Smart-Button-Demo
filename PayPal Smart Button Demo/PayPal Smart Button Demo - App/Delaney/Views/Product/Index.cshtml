@@ -1,0 +1,59 @@
+@model Delaney.Models.Summary<Delaney.Models.Product>
+    <div class="container">
+        <h2>Product Summary</h2>
+        <p>
+            @Html.ActionLink("Create New", "Edit", null)
+        </p>
+        <div class="table-responsive">
+            <table id="table_id"
+                   class="table table-striped">
+                <thead>
+                    <tr>
+                        <th style="width:1px; white-space: nowrap;"></th>
+                        <th>@Html.DisplayNameFor(model => model.Selected.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.Selected.Description)</th>
+                        <th>@Html.DisplayNameFor(model => model.Selected.Quantity)</th>
+                        <th>@Html.DisplayNameFor(model => model.Selected.Price)</th>
+                        <th>@Html.DisplayNameFor(model => model.Selected.BacketId)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Models != null)
+                    {
+                        @foreach (var item in Model.Models)
+                        {
+                    <tr>
+                        <td style="width:1px; white-space: nowrap;">
+                                @{
+                                    string linkEdit = "/Product/Edit/" + item.Id;
+                                    string linkDetail = "/Product/Detail/" + item.Id;
+                                    string linkDelete = "/Product/Delete/" + item.Id;
+                                }
+                                <a href="@linkEdit"
+                                   asp-authorize
+                                   asp-policy="Can Edit Product">Edit</a>
+                                <a href="@linkDetail"
+                                   asp-authorize
+                                   asp-policy="Can View Product Details">Details</a>
+
+                                <a href="@linkDelete"
+                                   asp-authorize
+                                   asp-policy="Can Delete Product">Delete</a>
+                        </td>
+                        <td><span>@Html.DisplayFor(modelItem => item.Name)</span></td>
+                        <td><span>@Html.DisplayFor(modelItem => item.Description)</span></td>
+                        <td><span>@Html.DisplayFor(modelItem => item.Quantity)</span></td>
+                        <td><span>@Html.DisplayFor(modelItem => item.Price)</span></td>
+                        <td>@item.Backet?.ToString()</td>
+                    </tr>
+                    }
+                }
+                </tbody>
+            </table>
+        </div>
+        <p class="text-info">Count: @Model.Count</p>
+    @if (!ViewContext.ModelState.IsValid)
+    {
+        @Html.ValidationSummary(false, "", new { @class = "text-danger list_Error" })
+    }
+    </div>

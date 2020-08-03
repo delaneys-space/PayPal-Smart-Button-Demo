@@ -1,0 +1,46 @@
+@model Delaney.Models.Basket
+
+<div class="container">
+
+    <h2>Basket Details</h2>
+
+    <div class="grid_auto_1fr">
+        <!-- Date -->
+        @Html.LabelFor(x => x.DateDisplayed)
+        <input id="DateDisplayed"
+               class="form-control"
+               name="DateDisplayed"
+               type="text"
+               readonly
+               value="@Model.DateDisplayed">
+
+        <!-- CurrencyCode -->
+        <div>@Html.DisplayNameFor(x => x.CurrencyCode)</div>
+        <div>@Html.DisplayFor(x => x.CurrencyCode)</div>
+
+        <!-- CurrencySymbol -->
+        <div>@Html.DisplayNameFor(x => x.CurrencySymbol)</div>
+        <div>@Html.DisplayFor(x => x.CurrencySymbol)</div>
+
+        <!-- Discount -->
+        <div>@Html.DisplayNameFor(x => x.Discount)</div>
+        <div>@Html.DisplayFor(x => x.Discount)</div>
+
+        <!-- Created Date -->
+        <div>@Html.DisplayNameFor(x => x.CreatedDate)</div>
+        <div>@Html.DisplayFor(x => x.CreatedDateString)</div>
+
+        <div>@Html.DisplayNameFor(x => x.GUID)</div>
+        <div>@Html.DisplayFor(x => x.GUID)</div>
+    </div>
+<!-- Edit Button -->
+@{string link = "/Basket/Edit/" + Model.Id;
+    <a href="@link"
+       asp-authorize
+       asp-policy="Can Edit Basket"
+       class="btn btn-secondary">Edit</a>
+}
+    <div>
+        @Html.ActionLink("Back to List", "")
+    </div>
+</div>

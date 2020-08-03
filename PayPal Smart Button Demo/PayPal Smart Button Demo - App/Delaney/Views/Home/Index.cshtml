@@ -1,0 +1,121 @@
+@model Delaney.Models.Basket
+
+<div class="container">
+    <h1>Checkout</h1>
+
+    @if(ViewBag.ShowErrorMessage)
+    {
+    <h4 class="text-danger">The PayPal client Id and/or secret are missing from properties on the class PayPal.PayPalClient.</h4>
+    }
+
+    <div class="table-responsive">
+        <table id="table_id"
+               class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Name</th>
+                    <th class="text-right" style="white-space: nowrap;">Unit Price</th>
+                    <th class="text-right">Price</th>
+                </tr>
+            </thead>
+            <tbody id="tbody_Orders">
+                @{decimal total = 0;}
+
+                @foreach (var product in Model.Products)
+                {
+                    var subTotal = product.Price * product.Quantity;
+                    total += subTotal;
+                    <tr>
+                        <td class="align-middle text-right" style="white-space: nowrap;">@product.Quantity</td>
+                        <td class="align-middle" style="width: 100%;">@product.Name</td>
+                        <td class="align-middle text-right" style="white-space: nowrap;"><span>@Model.CurrencySymbol</span> <span>@product.Price</span></td>
+                        <td class="align-middle text-right" style="white-space: nowrap;"><span>@Model.CurrencySymbol</span> <span>@subTotal</span></td>
+                    </tr>
+                }
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td class="align-middle text-right"><b>Total</b></td>
+                <td class="align-middle text-right"><span>@Model.CurrencySymbol</span> <span>@total</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <table class="table">
+        <tr>
+            <td style="text-align: right;">
+                <!-- Set up a container element for the PayPal smart button -->
+                <div id="paypal-button-container"></div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=@ViewBag.ClientId&currency=@ViewBag.CurrencyCode"></script>
+
+    <script>
+
+    // This is stored just in case the user cancels the other
+    // or there is an error in the other process.
+    var orderId;
+    // Render the PayPal smart button into #paypal-button-container
+    paypal.Buttons({
+
+        // Set up the transaction
+        createOrder: function (data, actions) {
+            orderId = data.orderID;
+            return fetch('/api/paypal/checkout/order/create/', {
+                method: 'post'
+            }).then(function (res) {
+                return res.json();
+            }).then(function (data) {
+                return data.orderID;
+            });
+        },
+
+        // Finalise the transaction
+        onApprove: function (data, actions) {
+            return fetch('/api/paypal/checkout/order/approved/' + data.orderID, {
+                method: 'post'
+            }).then(function (res) {
+                return actions.order.capture();
+            }).then(function (details) {
+
+                // (Preferred) Notify the server that the transaction id complete and have a option to display an order completed screen.
+                window.location.replace('/api/paypal/checkout/order/complete/' + data.orderID + '/@ViewBag.CurrencyCode');
+
+                // OR
+                // Notify the server that the transaction id complete
+                //httpGet('/api/paypal/checkout/order/complete/' + data.orderID);
+
+                // Show a success message to the buyer
+                alert('Transaction completed by ' + details.payer.name.given_name + '!');
+            });
+        },
+
+        // Buyer cancelled the payment
+        onCancel: function (data, actions) {
+            httpGet('/api/paypal/checkout/order/cancel/' + data.orderID);
+        },
+
+        // An error occurred during the transaction
+        onError: function (err) {
+            httpGet('/api/paypal/checkout/order/error/' + orderId + '/' + encodeURIComponent(err));
+        }
+
+    }).render('#paypal-button-container');
+
+
+    function httpGet(url) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", url, false);
+        xmlHttp.send(null);
+        return xmlHttp.responseText;
+    }
+    </script>
+</div>

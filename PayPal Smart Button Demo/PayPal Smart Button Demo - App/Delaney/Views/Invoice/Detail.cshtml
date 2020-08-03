@@ -1,0 +1,93 @@
+@model Delaney.Models.Invoice
+
+<div class="container">
+
+    <h2>Invoice Details</h2>
+
+    <div class="grid_auto_1fr">
+        <!-- Date -->
+        @Html.LabelFor(x => x.DateDisplayed)
+        <input id="DateDisplayed"
+               class="form-control"
+               name="DateDisplayed"
+               type="text"
+               readonly
+               value="@Model.DateDisplayed">
+
+        <!-- Number -->
+        <div>@Html.DisplayNameFor(x => x.Number)</div>
+        <div>@Html.DisplayFor(x => x.Number)</div>
+
+        <!-- Prefix -->
+        <div>@Html.DisplayNameFor(x => x.Prefix)</div>
+        <div>@Html.DisplayFor(x => x.Prefix)</div>
+
+        <!-- FirstName -->
+        <div>@Html.DisplayNameFor(x => x.FirstName)</div>
+        <div>@Html.DisplayFor(x => x.FirstName)</div>
+
+        <!-- MiddleName -->
+        <div>@Html.DisplayNameFor(x => x.MiddleName)</div>
+        <div>@Html.DisplayFor(x => x.MiddleName)</div>
+
+        <!-- LastName -->
+        <div>@Html.DisplayNameFor(x => x.LastName)</div>
+        <div>@Html.DisplayFor(x => x.LastName)</div>
+
+        <!-- Suffix -->
+        <div>@Html.DisplayNameFor(x => x.Suffix)</div>
+        <div>@Html.DisplayFor(x => x.Suffix)</div>
+
+        <!-- Email -->
+        <div>@Html.DisplayNameFor(x => x.Email)</div>
+        <div>@Html.DisplayFor(x => x.Email)</div>
+
+        <!-- Address1 -->
+        <div>@Html.DisplayNameFor(x => x.Address1)</div>
+        <div>@Html.DisplayFor(x => x.Address1)</div>
+
+        <!-- Address2 -->
+        <div>@Html.DisplayNameFor(x => x.Address2)</div>
+        <div>@Html.DisplayFor(x => x.Address2)</div>
+
+        <!-- Address3 -->
+        <div>@Html.DisplayNameFor(x => x.Address3)</div>
+        <div>@Html.DisplayFor(x => x.Address3)</div>
+
+        <!-- Address4 -->
+        <div>@Html.DisplayNameFor(x => x.Address4)</div>
+        <div>@Html.DisplayFor(x => x.Address4)</div>
+
+        <!-- Address5 -->
+        <div>@Html.DisplayNameFor(x => x.Address5)</div>
+        <div>@Html.DisplayFor(x => x.Address5)</div>
+
+        <!-- PostCode -->
+        <div>@Html.DisplayNameFor(x => x.PostCode)</div>
+        <div>@Html.DisplayFor(x => x.PostCode)</div>
+
+        <!-- CountryCode -->
+        <div>@Html.DisplayNameFor(x => x.CountryCode)</div>
+        <div>@Html.DisplayFor(x => x.CountryCode)</div>
+
+        <!-- PayPalOrderId -->
+        <div>@Html.DisplayNameFor(x => x.PayPalOrderId)</div>
+        <div>@Html.DisplayFor(x => x.PayPalOrderId)</div>
+
+        <!-- PayPalPayerId -->
+        <div>@Html.DisplayNameFor(x => x.PayPalPayerId)</div>
+        <div>@Html.DisplayFor(x => x.PayPalPayerId)</div>
+
+        <!-- Created Date -->
+        <div>@Html.DisplayNameFor(x => x.CreatedDate)</div>
+        <div>@Html.DisplayFor(x => x.CreatedDateString)</div>
+    </div>
+<!-- Edit Button -->
+@{string link = "/Invoice/Edit/" + Model.Id;
+    <a href="@link"
+       class="btn btn-secondary">Edit</a>
+}
+    <div>
+        @Html.ActionLink("Back to List", "")
+    </div>
+</div>

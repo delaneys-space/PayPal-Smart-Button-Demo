@@ -1,0 +1,27 @@
+<div class="container">
+    <h2>Administration Screen</h2>
+    <h3>Entities Summary Pages</h3>
+    <div class="flex_grid">
+        @if (User.Identity.IsAuthenticated)
+        {
+            @if (((System.Security.Claims.ClaimsIdentity)User.Identity).HasClaim("Role", "Administrator"))
+            {
+                <a class="btn btn-danger"
+                   href="Log/Error">Errors</a>
+            }
+
+            @if (((System.Security.Claims.ClaimsIdentity)User.Identity).HasClaim("Role", "Administrator")
+              || ((System.Security.Claims.ClaimsIdentity)User.Identity).HasClaim("Role", "Manage Users"))
+            {
+                <a class="btn btn-success"
+                   href="/User">Manage Users</a>
+                <a class="btn btn-success"
+                   href="/Role">Manage Roles</a>
+            }
+        }
+        <a class="btn btn-primary"
+           href="/Message"> Messages</a>
+        <a class="btn btn-primary"
+           href="/Invoice"> 0s</a>
+    </div>
+</div>

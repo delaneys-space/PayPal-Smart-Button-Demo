@@ -1,0 +1,29 @@
+[
+  {
+    "outputFileName": "wwwroot/production/css/site.min.css",
+    "inputFiles": [
+      "wwwroot/development/css/bootstrap.css",
+      "wwwroot/development/css/bootstrap-datepicker.css",
+      "wwwroot/development/css/bootstrap-toggle.css",
+      "wwwroot/development/css/cart.css",
+      "wwwroot/development/css/datePicker.css",
+      "wwwroot/development/css/site.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/production/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/development/js/bootstrap-toggle.js",
+      "wwwroot/development/js/bootstrap-datepicker.js",
+      "wwwroot/development/js/cart.js",
+      "wwwroot/development/js/contact_api.js",
+      "wwwroot/development/js/json_PrepartString.js",
+      "wwwroot/development/js/site.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+]

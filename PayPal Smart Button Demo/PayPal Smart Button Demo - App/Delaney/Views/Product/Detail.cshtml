@@ -1,0 +1,54 @@
+@model Delaney.Models.Product
+
+<div class="container">
+
+    <h2>Product Details</h2>
+
+    <div class="grid_auto_1fr">
+        <!-- Date -->
+        @Html.LabelFor(x => x.DateDisplayed)
+        <input id="DateDisplayed"
+               class="form-control"
+               name="DateDisplayed"
+               type="text"
+               readonly
+               value="@Model.DateDisplayed">
+
+        <!-- Name -->
+        <div>@Html.DisplayNameFor(x => x.Name)</div>
+        <div>@Html.DisplayFor(x => x.Name)</div>
+
+        <!-- Description -->
+        <div>@Html.DisplayNameFor(x => x.Description)</div>
+        <div>@Html.DisplayFor(x => x.Description)</div>
+
+        <!-- Quantity -->
+        <div>@Html.DisplayNameFor(x => x.Quantity)</div>
+        <div>@Html.DisplayFor(x => x.Quantity)</div>
+
+        <!-- Price -->
+        <div>@Html.DisplayNameFor(x => x.Price)</div>
+        <div>@Html.DisplayFor(x => x.Price)</div>
+
+        <!-- BacketString -->
+        <div>@Html.DisplayNameFor(x => x.BacketString)</div>
+        <div>@Html.DisplayFor(x => x.BacketString)</div>
+
+        <!-- Created Date -->
+        <div>@Html.DisplayNameFor(x => x.CreatedDate)</div>
+        <div>@Html.DisplayFor(x => x.CreatedDateString)</div>
+
+        <div>@Html.DisplayNameFor(x => x.GUID)</div>      
+        <div>@Html.DisplayFor(x => x.GUID)</div>
+    </div>
+<!-- Edit Button -->
+@{string link = "/Product/Edit/" + Model.Id;
+    <a href="@link"
+       asp-authorize
+       asp-policy="Can Edit Product"
+       class="btn btn-secondary">Edit</a>
+}
+    <div>
+        @Html.ActionLink("Back to List", "")
+    </div>
+</div>

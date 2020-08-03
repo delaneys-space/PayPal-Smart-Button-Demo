@@ -1,0 +1,53 @@
+@model Delaney.Models.Summary<Delaney.Models.Invoice>
+    <div class="container">
+        <h2>Invoice Summary</h2>
+        <p>
+            @Html.ActionLink("Create New", "Edit", null)
+        </p>
+        <div class="table-responsive">
+            <table id="table_id"
+                   class="table table-striped">
+                <thead>
+                    <tr>
+                        <th style="width:1px; white-space: nowrap;"></th>
+                        <th>@Html.DisplayNameFor(model => model.Selected.Number)</th>
+                        <th>@Html.DisplayNameFor(model => model.Selected.FirstName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Selected.LastName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Selected.PayPalOrderId)</th>
+                        <th>@Html.DisplayNameFor(model => model.Selected.PayPalPayerId)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Models != null)
+                    {
+                        @foreach (var item in Model.Models)
+                        {
+                    <tr>
+                        <td style="width:1px; white-space: nowrap;">
+                            @{
+                                string linkEdit = "/Invoice/Edit/" + item.Id;
+                                string linkDetail = "/Invoice/Detail/" + item.Id;
+                                string linkDelete = "/Invoice/Delete/" + item.Id;
+                            }
+                            <a href="@linkEdit">Edit</a>
+                            <a href="@linkDetail">Details</a>
+                            <a href="@linkDelete">Delete</a>
+                        </td>
+
+                        <td><span>@Html.DisplayFor(modelItem => item.Number)</span></td>
+                        <td><span>@Html.DisplayFor(modelItem => item.FirstName)</span></td>
+                        <td><span>@Html.DisplayFor(modelItem => item.LastName)</span></td>
+                        <td><span>@Html.DisplayFor(modelItem => item.PayPalOrderId)</span></td>
+                        <td><span>@Html.DisplayFor(modelItem => item.PayPalPayerId)</span></td>
+                    </tr>
+                    }
+                }
+                </tbody>
+            </table>
+        </div>
+        <p class="text-info">Count: @Model.Count</p>
+    @if (!ViewContext.ModelState.IsValid)
+    {
+        @Html.ValidationSummary(false, "", new { @class = "text-danger list_Error" })
+    }
+    </div>

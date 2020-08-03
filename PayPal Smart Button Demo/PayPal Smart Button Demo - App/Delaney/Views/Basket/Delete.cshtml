@@ -1,0 +1,65 @@
+@model Delaney.Models.Basket
+<div class="container">
+
+    <h2>Delete Basket</h2>
+
+    <form asp-action="Delete"
+          method="post">
+        <h3>Are you sure you?</h3>
+
+        <div class="grid_auto_1fr">
+
+            <!-- CurrencyCode -->
+            <div>@Html.DisplayNameFor(x => x.CurrencyCode)</div>
+            <div>@Html.DisplayFor(x => x.CurrencyCode)</div>
+
+            <!-- CurrencySymbol -->
+            <div>@Html.DisplayNameFor(x => x.CurrencySymbol)</div>
+            <div>@Html.DisplayFor(x => x.CurrencySymbol)</div>
+
+            <!-- Discount -->
+            <div>@Html.DisplayNameFor(x => x.Discount)</div>
+            <div>@Html.DisplayFor(x => x.Discount)</div>
+
+            <!-- Created Date -->
+            <div>@Html.DisplayNameFor(x => x.CreatedDate)</div>
+            <div>@Html.DisplayFor(x => x.CreatedDateString)</div>
+
+            <div>@Html.DisplayNameFor(x => x.GUID)</div>
+            <div>@Html.DisplayFor(x => x.GUID)</div>
+        </div>
+
+        @if (!ViewContext.ModelState.IsValid)
+        {
+            @Html.ValidationSummary(false,
+                                    "",
+                                    new { @class = "text-danger list_Error" })
+        }
+
+        <!-- Buttons -->
+        <button formaction="/Basket/Delete"
+                formmethod="post"
+                type="submit"
+                class="btn btn-secondary">
+            Delete
+        </button>
+        <button formaction="/Basket/Cancel"
+                formmethod="post"
+                type="submit"
+                class="btn btn-secondary">
+            Cancel
+        </button>
+
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.CurrencyCode)
+        @Html.HiddenFor(x => x.CurrencySymbol)
+        @Html.HiddenFor(x => x.Discount)
+        @Html.HiddenFor(x => x.CreatedDate)
+        @Html.HiddenFor(x => x.GUID)
+    </form>
+
+
+    <div>
+        <p class="delaney-link-pager">@Html.ActionLink("Back to List", "")</p>
+    </div>
+</div>

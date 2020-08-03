@@ -1,0 +1,164 @@
+@model Delaney.Models.Invoice
+
+<div class="container">
+    <h2>Edit Invoice</h2>
+
+    <form asp-action="Edit"
+          method="post">
+
+        <!-- Form Invoice -->
+        <div class="grid_auto_1fr">
+
+            <!-- Date -->
+            @Html.LabelFor(x => x.DateDisplayed)
+            <input id="DateDisplayed"
+                   class="form-control"
+                   name="DateDisplayed"
+                   type="text"
+                   readonly
+                   value="@Model.DateDisplayed">
+
+
+            <!-- Number Input -->
+            @Html.LabelFor(x => x.Number)
+            <input class="form-control"
+                   name="Number"
+                   type="text"
+                   value="@Model.Number">
+
+            <!-- Prefix Input -->
+            @Html.LabelFor(x => x.Prefix)
+            <input class="form-control"
+                   name="Prefix"
+                   type="text"
+                   value="@Model.Prefix">
+
+            <!-- FirstName Input -->
+            @Html.LabelFor(x => x.FirstName)
+            <input class="form-control"
+                   name="FirstName"
+                   type="text"
+                   value="@Model.FirstName">
+
+            <!-- MiddleName Input -->
+            @Html.LabelFor(x => x.MiddleName)
+            <input class="form-control"
+                   name="MiddleName"
+                   type="text"
+                   value="@Model.MiddleName">
+
+            <!-- LastName Input -->
+            @Html.LabelFor(x => x.LastName)
+            <input class="form-control"
+                   name="LastName"
+                   type="text"
+                   value="@Model.LastName">
+
+            <!-- Suffix Input -->
+            @Html.LabelFor(x => x.Suffix)
+            <input class="form-control"
+                   name="Suffix"
+                   type="text"
+                   value="@Model.Suffix">
+
+            <!-- Email Input -->
+            @Html.LabelFor(x => x.Email)
+            <input class="form-control"
+                   name="Email"
+                   type="text"
+                   value="@Model.Email">
+
+            <!-- Address1 Input -->
+            @Html.LabelFor(x => x.Address1)
+            <input class="form-control"
+                   name="Address1"
+                   type="text"
+                   value="@Model.Address1">
+
+            <!-- Address2 Input -->
+            @Html.LabelFor(x => x.Address2)
+            <input class="form-control"
+                   name="Address2"
+                   type="text"
+                   value="@Model.Address2">
+
+            <!-- Address3 Input -->
+            @Html.LabelFor(x => x.Address3)
+            <input class="form-control"
+                   name="Address3"
+                   type="text"
+                   value="@Model.Address3">
+
+            <!-- Address4 Input -->
+            @Html.LabelFor(x => x.Address4)
+            <input class="form-control"
+                   name="Address4"
+                   type="text"
+                   value="@Model.Address4">
+
+            <!-- Address5 Input -->
+            @Html.LabelFor(x => x.Address5)
+            <input class="form-control"
+                   name="Address5"
+                   type="text"
+                   value="@Model.Address5">
+
+            <!-- PostCode Input -->
+            @Html.LabelFor(x => x.PostCode)
+            <input class="form-control"
+                   name="PostCode"
+                   type="text"
+                   value="@Model.PostCode">
+
+            <!-- CountryCode Input -->
+            @Html.LabelFor(x => x.CountryCode)
+            <input class="form-control"
+                   name="CountryCode"
+                   type="text"
+                   value="@Model.CountryCode">
+
+            <!-- PayPalOrderId Input -->
+            @Html.LabelFor(x => x.PayPalOrderId)
+            <input class="form-control"
+                   name="PayPalOrderId"
+                   type="text"
+                   value="@Model.PayPalOrderId">
+
+            <!-- PayPalPayerId Input -->
+            @Html.LabelFor(x => x.PayPalPayerId)
+            <input class="form-control"
+                   name="PayPalPayerId"
+                   type="text"
+                   value="@Model.PayPalPayerId">
+        </div>
+
+    @if (!ViewContext.ModelState.IsValid)
+    {
+        @Html.ValidationSummary(false, "", new { @class = "text-danger list_Error" })
+    }
+        <!-- Buttons -->
+        <button formaction="/Invoice/Edit"
+                formmethod="post"
+                type="submit"
+                class="btn btn-secondary">Save</button>
+        <button formaction="/Invoice/Cancel"
+                formmethod="post"
+                type="submit"
+                class="btn btn-secondary">Cancel</button>
+
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.CreatedDate)
+        @Html.HiddenFor(x => x.GUID)
+
+    </form>
+
+
+    <div>
+        @Html.ActionLink("Back to List", "")
+    </div>
+</div>
+<script>
+    $('.input-group.date').datepicker({
+            format: 'yyyy-mm-dd'
+         });
+</script>

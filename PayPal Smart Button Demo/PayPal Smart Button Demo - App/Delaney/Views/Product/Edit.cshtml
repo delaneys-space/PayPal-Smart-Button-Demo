@@ -1,0 +1,87 @@
+@model Delaney.Models.Product
+
+<div class="container">
+    <h2>Edit Product</h2>
+
+    <form asp-action="Edit"
+          method="post">
+
+        <!-- Form Product -->
+        <div class="grid_auto_1fr">
+
+            <!-- Date -->
+            @Html.LabelFor(x => x.DateDisplayed)
+            <input id="DateDisplayed"
+                   class="form-control"
+                   name="DateDisplayed"
+                   type="text"
+                   readonly
+                   value="@Model.DateDisplayed">
+
+            <!-- Name Input -->
+            @Html.LabelFor(x => x.Name)
+            <input class="form-control"
+                   name="Name"
+                   type="text"
+                   value="@Model.Name">
+
+            <!-- Description Input -->
+            @Html.LabelFor(x => x.Description)
+            <input class="form-control"
+                   name="Description"
+                   type="text"
+                   value="@Model.Description">
+
+            <!-- Quantity Input -->
+            @Html.LabelFor(x => x.Quantity)
+            <input class="form-control"
+                   name="Quantity"
+                   type="text"
+                   value="@Model.Quantity">
+
+            <!-- Price Input -->
+            @Html.LabelFor(x => x.Price)
+            <input class="form-control"
+                   name="Price"
+                   type="text"
+                   value="@Model.Price">
+
+            <!-- GUID Input -->
+            @Html.LabelFor(x => x.GUID)
+            <input class="form-control"
+                   name="{property pascal}"
+                   type="text"
+                   readonly
+                   value="@Model.GUID">
+        </div>
+
+    @if (!ViewContext.ModelState.IsValid)
+    {
+        @Html.ValidationSummary(false, "", new { @class = "text-danger list_Error" })
+    }
+        <!-- Buttons -->
+        <button formaction="/Product/Edit"
+                formmethod="post"
+                type="submit"
+                class="btn btn-secondary">Save</button>
+        <button formaction="/Product/Cancel"
+                formmethod="post"
+                type="submit"
+                class="btn btn-secondary">Cancel</button>
+
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.CreatedDate)
+        @Html.HiddenFor(x => x.GUID)
+
+    </form>
+
+
+    <div>
+        @Html.ActionLink("Back to List", "")
+    </div>
+</div>
+<script>
+    $('.input-group.date').datepicker({
+            format: 'yyyy-mm-dd'
+         });
+</script>

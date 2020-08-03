@@ -1,0 +1,71 @@
+@model Delaney.Models.Product
+<div class="container">
+
+    <h2>Delete Product</h2>
+
+    <form asp-action="Delete"
+          method="post">
+        <h3>Are you sure you?</h3>
+
+        <div class="grid_auto_1fr">
+
+        <!-- Description -->
+        <div>@Html.DisplayNameFor(x => x.Description)</div>
+        <div>@Html.DisplayFor(x => x.Description)</div>
+
+        <!-- Name -->
+        <div>@Html.DisplayNameFor(x => x.Name)</div>
+        <div>@Html.DisplayFor(x => x.Name)</div>
+
+        <!-- Price -->
+        <div>@Html.DisplayNameFor(x => x.Price)</div>
+        <div>@Html.DisplayFor(x => x.Price)</div>
+
+        <!-- Quantity -->
+        <div>@Html.DisplayNameFor(x => x.Quantity)</div>
+        <div>@Html.DisplayFor(x => x.Quantity)</div>
+
+        <!-- BacketString -->
+        <div>@Html.DisplayNameFor(x => x.BacketString)</div>
+        <div>@Html.DisplayFor(x => x.BacketString)</div>
+
+        <!-- Created Date -->
+        <div>@Html.DisplayNameFor(x => x.CreatedDate)</div>
+        <div>@Html.DisplayFor(x => x.CreatedDateString)</div>
+
+        <div>@Html.DisplayNameFor(x => x.GUID)</div>      
+        <div>@Html.DisplayFor(x => x.GUID)</div>
+    </div>
+
+    @if (!ViewContext.ModelState.IsValid)
+    {
+        @Html.ValidationSummary(false,
+                                "",
+                                new { @class = "text-danger list_Error" })
+    }
+
+        <!-- Buttons -->
+        <button formaction="/Product/Delete"
+                formmethod="post"
+                type="submit"
+                class="btn btn-secondary">Delete</button>
+        <button formaction="/Product/Cancel"
+                formmethod="post"
+                type="submit"
+                class="btn btn-secondary">Cancel</button>
+
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.BacketId)
+        @Html.HiddenFor(x => x.Description)
+        @Html.HiddenFor(x => x.Name)
+        @Html.HiddenFor(x => x.Price)
+        @Html.HiddenFor(x => x.Quantity)
+        @Html.HiddenFor(x => x.CreatedDate)
+        @Html.HiddenFor(x => x.GUID)
+    </form>
+
+
+    <div>
+        <p class="delaney-link-pager">@Html.ActionLink("Back to List", "")</p>
+    </div>
+</div>
