@@ -13,7 +13,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="PayPalCheckoutSdk" Version="1.0.3" />
     <PackageReference Include="PayPalHttp" Version="1.0.0" />
-    <PackageReference Include="System.DirectoryServices.Protocols" Version="4.7.0" />
+    <PackageReference Include="System.DirectoryServices.Protocols" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>
